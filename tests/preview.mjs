@@ -159,12 +159,12 @@ const day = (offset) => {
 }
 const today = day(0)
 
-await tool.execute({ action: 'task.create', title: '甘特图与日历视图联调', project: '工作记录插件', start: day(-3), end: day(5), status: 'doing', progress: 45, priority: 'high', remindAt: `${today}T09:30`, remindLead: 15 })
-await tool.execute({ action: 'task.create', title: '需求梳理与数据结构', project: '工作记录插件', start: day(-8), end: day(-4), status: 'done' })
-await tool.execute({ action: 'task.create', title: '浮窗提醒联调', project: '工作记录插件', start: day(-6), end: day(-2), status: 'blocked' })
+await tool.execute({ action: 'task.create', title: '甘特图与日历视图联调', project: '示例工作流', start: day(-3), end: day(5), status: 'doing', progress: 45, priority: 'high', remindAt: `${today}T09:30`, remindLead: 15 })
+await tool.execute({ action: 'task.create', title: '需求梳理与数据结构', project: '示例工作流', start: day(-8), end: day(-4), status: 'done' })
+await tool.execute({ action: 'task.create', title: '浮窗提醒联调', project: '示例工作流', start: day(-6), end: day(-2), status: 'blocked' })
 await tool.execute({ action: 'task.create', title: '插件文档与截图', project: '交付', start: day(2), end: day(7), status: 'todo', priority: 'normal' })
 await tool.execute({ action: 'task.create', title: 'v1 发布评审', project: '交付', start: day(8), end: day(8), status: 'todo', milestone: true, priority: 'high' })
-await tool.execute({ action: 'task.create', title: '持续打磨体验（无期限）', project: '工作记录插件', start: day(-1), end: null, status: 'doing', progress: 35 })
+await tool.execute({ action: 'task.create', title: '持续打磨体验（无期限）', project: '示例工作流', start: day(-1), end: null, status: 'doing', progress: 35 })
 await tool.execute({ action: 'record.create', content: '完成甘特图拖动与日期换算，处理跨月边界', minutes: 135, date: today })
 await tool.execute({ action: 'record.create', content: '浮窗改用 shell.overlay，拖动位置存 localStorage', minutes: 60, date: today })
 await tool.execute({ action: 'record.create', content: '补齐提醒去重，避免刷新后重复弹出', minutes: 45, date: today })

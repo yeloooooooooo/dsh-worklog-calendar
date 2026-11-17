@@ -56,10 +56,10 @@ window.__ModuleLoader__.load({
 
     /**
      * Assign colours by first-seen order rather than by hashing the name.
-     * A hash collides: "课程开发", "未分组" and "工作记录插件" all mapped to the
-     * same blue, which is exactly the case where the colours failed to tell
-     * workstreams apart. Sequential assignment guarantees distinct colours for
-     * distinct names as long as there are fewer names than palette entries.
+     * A hash collides: distinct project names can map to the same blue, which is
+     * exactly the case where the colours failed to tell workstreams apart.
+     * Sequential assignment guarantees distinct colours for distinct names as
+     * long as there are fewer names than palette entries.
      */
     const makeColorBook = () => {
       const assigned = new Map();

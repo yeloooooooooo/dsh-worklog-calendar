@@ -255,8 +255,8 @@ async function main() {
   }
 
   const today = day(0)
-  await tool.execute({ action: 'task.create', title: '甘特图联调', project: '工作记录插件', start: day(-2), end: day(4), status: 'doing', progress: 45, priority: 'high', remindAt: `${today}T09:30`, remindLead: 15 })
-  await tool.execute({ action: 'task.create', title: '逾期示范', project: '工作记录插件', start: day(-9), end: day(-3), status: 'blocked' })
+  await tool.execute({ action: 'task.create', title: '甘特图联调', project: '示例工作流', start: day(-2), end: day(4), status: 'doing', progress: 45, priority: 'high', remindAt: `${today}T09:30`, remindLead: 15 })
+  await tool.execute({ action: 'task.create', title: '逾期示范', project: '示例工作流', start: day(-9), end: day(-3), status: 'blocked' })
   await tool.execute({ action: 'task.create', title: '已完成示范', project: '其他', start: day(-6), end: day(-5), status: 'done' })
   await tool.execute({ action: 'task.create', title: '里程碑', start: day(1), end: day(1), milestone: true })
   await tool.execute({ action: 'record.create', content: '完成了宿主端与存储层', minutes: 120, date: today })
@@ -361,7 +361,7 @@ async function main() {
   // Task names belong to the Gantt view.
   check('gantt shows task names', ['甘特图联调', '逾期示范'].every((title) => textOf(ganttTree).includes(title)), textOf(ganttTree).slice(0, 200))
   // The Gantt rail names the project; calendar chips carry the title only.
-  check('gantt rail shows the project', textOf(ganttTree).includes('工作记录插件'))
+  check('gantt rail shows the project', textOf(ganttTree).includes('示例工作流'))
 
   const dayCells = collect(ganttTree, (node) => node.type === 'div' && String(node.props?.className || '').split(' ').includes('wl-day'))
   check('day header covers the month', dayCells.length >= 28 && dayCells.length <= 31, dayCells.length)
@@ -523,7 +523,7 @@ async function main() {
   // The user opens a task and manages its phases in that same drawer — no
   // separate project panel, no group indirection.
   const projSeed = await tool.execute({
-    action: 'task.create', title: '阶段验证项目', group: '独立小项目', start: today, status: 'doing',
+    action: 'task.create', title: '阶段验证项目', group: '临时任务', start: today, status: 'doing',
   })
   await globalThis.__worklogStore.reload()
   await new Promise((resolve) => setTimeout(resolve, 0))
@@ -991,7 +991,7 @@ async function main() {
     return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, '0')}-${String(date.getUTCDate()).padStart(2, '0')}`
   }
   const ganttHost = await tool.execute({
-    action: 'task.create', title: '分段阶段项目', group: '独立小项目',
+    action: 'task.create', title: '分段阶段项目', group: '临时任务',
     start: today, end: shiftDay(today, 10), status: 'doing',
   })
   const segA = await tool.execute({

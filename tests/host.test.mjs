@@ -313,11 +313,11 @@ check('delete keeps the tasks', deleted.tasks.some((t) => t.title === '分组任
 // --- a grouped task is never reported as 未分组 ---------------------------
 // Regression: projectList() only read `project`, so a task filed under a group
 // showed up as ungrouped in the board's rollup.
-const onlyGroup = await run({ action: 'task.create', title: '只有分组', group: '课程开发', start: day(0) })
+const onlyGroup = await run({ action: 'task.create', title: '只有分组', group: '产品迭代', start: day(0) })
 const onlyProject = await run({ action: 'task.create', title: '只有项目', project: '交付', start: day(0) })
 const neither = await run({ action: 'task.create', title: '都没有', start: day(0) })
 const rollupLabels = (await run({ action: 'snapshot' })).projects
-check('group becomes the label', rollupLabels.some((p) => p.name === '课程开发'), rollupLabels)
+check('group becomes the label', rollupLabels.some((p) => p.name === '产品迭代'), rollupLabels)
 check('project keeps its own label', rollupLabels.some((p) => p.name === '交付'), rollupLabels)
 // Other fixtures may also be unfiled; what matters is that the grouped task
 // is not counted there.
@@ -325,7 +325,7 @@ const ungrouped = rollupLabels.find((p) => p.name === '未分组')?.count || 0
 const earliest = (await run({ action: 'snapshot' })).tasks.filter((task) => !task.project && !task.group).length
 check('未分组 counts only truly unfiled tasks', ungrouped === earliest, { ungrouped, earliest })
 const summaryLabels = (await run({ action: 'summary' })).rollup.map((r) => r.project)
-check('summary agrees with the board', summaryLabels.includes('课程开发') && summaryLabels.includes('交付'), summaryLabels)
+check('summary agrees with the board', summaryLabels.includes('产品迭代') && summaryLabels.includes('交付'), summaryLabels)
 await run({ action: 'task.bulk', ids: [onlyGroup.task.id, onlyProject.task.id, neither.task.id], op: 'delete' })
 
 
@@ -466,8 +466,8 @@ await run({ action: 'group', groupAction: 'delete', name: '日常重点' })
 // --- phases belong to ONE project ----------------------------------------
 // A "project" is a task: the top-level piece of work being delivered. Phases
 // record what each stretch of that project produced.
-const projA = await run({ action: 'task.create', title: '智能课程开发', group: '课程开发', start: '2026-11-01' })
-const projB = await run({ action: 'task.create', title: '雷达车底座测试', group: '独立小项目', start: '2026-11-01' })
+const projA = await run({ action: 'task.create', title: '示例项目甲', group: '产品迭代', start: '2026-11-01' })
+const projB = await run({ action: 'task.create', title: '示例项目乙', group: '临时任务', start: '2026-11-01' })
 
 const pa1 = await run({
   action: 'phase', phaseAction: 'create',
@@ -507,7 +507,7 @@ check('phases are scoped to their project', projAPhases.length === 2,
 check('phases sort by start', projAPhases.map((p) => p.name).join(',') === '需求调研,联调实现',
   projAPhases.map((p) => p.name))
 check('phases name their project',
-  phSnap.phases.find((p) => p.name === '需求调研')?.projectTitle === '智能课程开发',
+  phSnap.phases.find((p) => p.name === '需求调研')?.projectTitle === '示例项目甲',
   phSnap.phases.map((p) => p.projectTitle))
 check('other project keeps its own phase',
   phSnap.phases.filter((p) => p.taskId === projB.task.id).length === 1,

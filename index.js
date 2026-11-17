@@ -536,8 +536,8 @@ function makeStore(config) {
    * Phases are dated milestones that belong to ONE project.
    *
    * A project here is a task — the top-level piece of work the user tracks
-   * ("智能课程开发", "雷达车底座测试"). Its phases record what each stretch of
-   * that project delivered, which is what a long-running project is remembered
+   * ("网站改版", "设备调试"). Its phases record what each stretch of that
+   * project delivered, which is what a long-running project is remembered
    * by. Phases therefore key on the task id, not on a group label: grouping is
    * an organising device, the project is the thing being delivered.
    */
