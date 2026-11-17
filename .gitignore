@@ -1,0 +1,18 @@
+node_modules/
+*.log
+
+# 个人数据：任务、记录、打卡与设置都写在 data/worklog.json，不进入版本库
+data/*.json
+data/*.tmp
+data/*.corrupt-*
+!data/.gitkeep
+
+# 测试与预览的本地产物
+tests/preview.html
+tests/*.preview.html
+
+# 编辑器与系统文件
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

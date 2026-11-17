@@ -1,0 +1,36 @@
+{
+  "name": "dsh-worklog-calendar",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "工作记录与提醒：甘特图日历流程、任务日志与桌面浮窗。",
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "worklog",
+    "gantt",
+    "calendar"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "holidays.json",
+    "README.md",
+    "LICENSE",
+    "icon.svg"
+  ],
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": ["@deepseek-ai/dsh-client-ui-conversation"]
+    }
+  }
+}

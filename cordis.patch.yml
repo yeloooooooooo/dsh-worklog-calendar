@@ -1,0 +1,7 @@
+- insert:
+    - id: worklog-calendar
+      name: 'dsh-worklog-calendar'
+      # stateFile 刻意留空：宿主端默认把数据写在 <插件目录>/data/worklog.json，
+      # 由 plugin.config.stateFile 覆盖即可迁到别处。此处写死绝对路径会让插件
+      # 只能装在作者机器上的那个目录。
+
